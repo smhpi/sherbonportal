@@ -11,3 +11,44 @@ Template: astra
 body{
    
 }
+
+/* .ast-container{
+    max-width: 95%;
+} */
+
+/* .ast-separate-container .ast-article-single{
+    padding: 0 ;
+} */
+
+.html5-video-player{
+    float:left;
+    
+}
+
+section .pttitle{
+    text-align: center;
+    font-size: 3.5em;
+    font-weight: 700;
+    padding-top: 40px;
+    text-decoration: underline;
+}
+
+.list{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.ptservices{
+    list-style: none;
+    float: left;
+    width: 33%;
+    height: 600px;
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(133, 133, 133, 0.438);
+}
+
+.ptservices img{
+    max-width: 100%;
+}
