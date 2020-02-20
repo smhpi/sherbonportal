@@ -35,14 +35,17 @@ section .pttitle{
 
 }
 
-.ptservices{
-    list-style: none;
-    float: left;
+.ptlink{
     width: 33%;
     height: 600px;
+    float: left;
     background-position: center;
     background-size: cover;
     background-color: rgba(133, 133, 133, 0.438);
+}
+
+.ptservices{
+
 }
 
 .ptservices img{

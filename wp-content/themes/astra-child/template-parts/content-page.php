@@ -120,12 +120,14 @@
 							while( have_rows('asset_selection') ): the_row(); 
 								$sub_field_3 = get_sub_field('link_image'); 
 								echo '
-										<div class="ptservices" 
-											style="background-image: url('.esc_url($sub_field_3['url']).');" >
-											<a href="'.get_sub_field('link_url').'">
-												'.get_sub_field('link_title').'
-											</a>
-										</div>
+										<a class="ptlink" href="'.get_sub_field('link_url').'" 
+											style="background-image: url('.esc_url($sub_field_3['url']).');">
+											<div class="ptservices" 
+												 >
+												
+													'.get_sub_field('link_title').'
+											</div>
+										</a>
 										';
 								// do something with $sub_field_3
 								
