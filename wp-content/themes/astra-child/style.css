@@ -16,38 +16,131 @@ Template: astra
     padding: 0 ;
 } */
 
+#primary {
+    margin: 0 0 4em 0;
+}
+
 .html5-video-player{
     float:left;
     
+}
+
+.mainImage{
+    width:40%; 
+    float:left; 
+    margin-right:1%;
+    max-height: 1114px;
+}
+
+.secondImage{
+    width:30%; 
+    float:left; 
+    margin-right:-7%;
+}
+
+.entry-content h1{
+    font-weight:700;
+    position: relative;
+    clear: inherit;
+    margin: 5% auto;
+}
+
+.shortdesc{
+    position: relative;clear: inherit; text-align:center;
+}
+
+.slogan{
+    position: relative; 
+    background-color: #00144d; 
+    color: white; 
+    float:right; 
+    width:59%; 
+    height:200px; 
+    text-align:center;
+    padding: 60px 0;
+    margin-top: 1%;
 }
 
 section .pttitle{
     text-align: center;
     font-size: 3.5em;
     font-weight: 700;
-    padding-top: 40px;
+    padding: 40px 0 30px 0;
     text-decoration: underline;
 }
 
 .list{
     display: flex;
     flex-direction: row;
+    
 
+}
+
+.card{
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    margin: 0 2px;      
 }
 
 .ptlink{
-    width: 33%;
     height: 600px;
     float: left;
-    background-position: center;
-    background-size: cover;
-    background-color: rgba(133, 133, 133, 0.438);
+    background-color: rgba(71, 71, 71, 0.384);
+}
+
+.ptlink:hover{
+    /* background-color: rgba(238, 238, 238, 0);
+    transition: 1s; */
 }
 
 .ptservices{
-
+    font-size: 2.3em;
+    color: whitesmoke;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 30px;
 }
 
-.ptservices img{
-    max-width: 100%;
+.ptlink p{
+    color: white;
+    padding: 180px 10px 0 10px;
+    font-weight: 700;
 }
+
+/* .footer-adv-overlay {
+    background-color: #7b8085;
+}
+
+.ast-footer-overlay {
+    background-color: #7b8085;
+} */
+
+.site-footer .widget-title {
+   padding-top: 20px;
+}
+
+/* Style all font awesome icons */
+.fa {
+    font-size: 30px;
+    text-align: center;
+    text-decoration: none;
+    padding: 0git 20px;
+  }
+  
+  /* Add a hover effect if you want */
+  .fa:hover {
+    opacity: 0.7;
+  }
+  
+  /* Set a specific color for each brand */
+  
+  /* Facebook */
+  .fa-facebook {
+    color: white;
+  }
+  
+  /* Twitter */
+  .fa-twitter {
+    color: white;
+  }

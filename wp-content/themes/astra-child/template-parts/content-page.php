@@ -60,11 +60,13 @@
 			if(get_field('first_image')) {
 				$FirstImage = get_field('first_image');
 				$SecondImage = get_field('second_image');
-				echo'	<img src="'.esc_url($FirstImage['url']).'" style="width:40%; float:left; margin-right:1%;"/>
-						<img src="'.esc_url($SecondImage['url']).'" style="width:30%; float:left; margin-right:-7%;"/>
-						<h1 style="font-weight:700;position: relative;clear: inherit;">'.get_field('title').'</h1>
-						<h4 style="position: relative;clear: inherit; text-align:center;">'.get_field('short_description').'</h4>
-						<p style="position: relative; background-color: #00144d; color: white; float:right; width:58%; height:200px; text-align:center;padding: 60px 0;margin-top: 1%;">
+				echo'	<img class="mainImage" src="'.esc_url($FirstImage['url']).'"/>
+						<img class="secondImage" src="'.esc_url($SecondImage['url']).'"/>
+						<h1>'
+							.get_field('title').'</h1>
+						<h4 class="shortdesc">'
+							.get_field('short_description').'</h4>
+						<p class="slogan">							
 							'.get_field('slogan').'</p>';
 			}
 			if(get_field('video')){
@@ -120,17 +122,17 @@
 							while( have_rows('asset_selection') ): the_row(); 
 								$sub_field_3 = get_sub_field('link_image'); 
 								echo '
-										<a class="ptlink" href="'.get_sub_field('link_url').'" 
+										<div class="card" 
 											style="background-image: url('.esc_url($sub_field_3['url']).');">
-											<div class="ptservices" 
-												 >
-												
-													'.get_sub_field('link_title').'
-											</div>
-										</a>
-										';
-								// do something with $sub_field_3
-								
+											<a class="ptlink" href="'.get_sub_field('link_url').'" >
+												<div class="ptservices">
+														'.get_sub_field('link_title').'
+												</div>
+												<p>
+												'.get_sub_field('description').'
+												</p>
+											</a>
+										</div>';
 							endwhile;
 						 
 							echo'</div>';
