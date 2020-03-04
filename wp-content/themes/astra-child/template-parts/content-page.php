@@ -145,10 +145,38 @@
 				endwhile;
 
 				// Do something...
-			endif;
+			endif;	
 		?>
 
-		<?php astra_entry_content_after(); ?>
+		<?php 
+		$images = get_field('images_list');
+		$size = 'large'; // (thumbnail, medium, large, full or custom size)
+		$width = $image['sizes'][ $size . '-width' ];
+    	$height = $image['sizes'][ $size . '-height' ];
+		if( $images ): ?>
+			<div class="gallery">
+					<?php foreach( $images as $image ): 
+						$content = '<div class="image-overlay-container zoom-on-hover">';
+							$content .= '<a class="gallery_image" href="'. $image['url'] .'">';
+								$content .= '<img class="attachment-medium" src="'. $image['url'].'" alt="'. $image['alt'] .'" />';
+							$content .= '<div class="image-overlay" style="">
+								<div class="image-overlay-text" style="">
+								<span class="fas fa-expand-alt" style="color: white"></span>
+								</div>
+								</div>
+								</a>';
+						$content .= '</div>';
+						if ( function_exists('slb_activate') ){
+				$content = slb_activate($content);
+				}
+				
+			echo $content;?>
+					<?php endforeach; ?>
+			</div>
+			<?php endif; ?>			
+		<?php astra_entry_content_after(); 
+				
+		?>
 
 		<?php
 			wp_link_pages(
