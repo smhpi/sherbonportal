@@ -153,9 +153,9 @@ section .pttitle{
 
   .image-overlay-container{
     position: relative;
-    width: 25%;
+    width: 24%;
     float: left;
-    padding: 0 5px;
+    margin: 0 5px;
 
   }
 
@@ -174,7 +174,7 @@ section .pttitle{
     opacity: 1;
     display: block;
     max-width: 100%;
-    height: 420px;
+    height: auto;
     backface-visibility: hidden;
   }
 
