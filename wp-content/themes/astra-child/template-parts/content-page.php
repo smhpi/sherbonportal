@@ -110,7 +110,7 @@
 				while ( have_rows('page_layouts') ) : the_row();
 
 					// Case: Paragraph layout.
-					if( get_row_layout() == 'ribbon_link_section' ):
+					// if( get_row_layout() == 'ribbon_link_section' ):
 						$text = get_sub_field('section_heading');
 						echo '<section class="services"><h2 class="pttitle">'.$text.'</h2>';
 						$asset = get_sub_field('asset_selection');
@@ -139,7 +139,7 @@
 						endif;
 						// Do something...
 						echo'</section>';						
-					endif;
+					// endif;
 
 				// End loop.
 				endwhile;
