@@ -69,19 +69,6 @@
 						<p class="slogan">							
 							'.get_field('slogan').'</p>';
 			}
-			if(get_field('banner')) {
-				$Banner = get_field('banner');
-				echo'<div class="banner"
-				style="background-image: url('.esc_url($Banner['url']).');">
-						<div style="
-						font-weight: 700;
-						clear: inherit;
-						text-align: center;
-						padding: 11% 0px;"></div>		
-				</div>
-				<h1 style="text-align:center; clear:both;">'.get_field('title').'</h1>		
-				';
-			}
 			if(get_field('video')){
 				echo'<div style="display:flex; flex-direction: row; float: left; width:56%;">';
 				echo the_field('video');
@@ -162,31 +149,75 @@
 		?>
 
 		<?php 
-		$images = get_field('images_list');
-		$size = 'large'; // (thumbnail, medium, large, full or custom size)
-		$width = $image['sizes'][ $size . '-width' ];
-    	$height = $image['sizes'][ $size . '-height' ];
-		if( $images ): ?>
-			<div class="gallery">
-					<?php foreach( $images as $image ): 
-						$content = '<div class="image-overlay-container zoom-on-hover">';
-							$content .= '<a class="gallery_image" href="'. $image['url'] .'">';
-								$content .= '<img class="attachment-medium" src="'. $image['url'].'" alt="'. $image['alt'] .'" />';
-							$content .= '<div class="image-overlay" style="">
-								<div class="image-overlay-text" style="">
-								<span class="fas fa-expand-alt" style="color: white"></span>
-								</div>
-								</div>
-								</a>';
-						$content .= '</div>';
-						if ( function_exists('slb_activate') ){
-				$content = slb_activate($content);
-				}
-				
-			echo $content;?>
-					<?php endforeach; ?>
-			</div>
-			<?php endif; ?>			
+			if(get_field('banner')) {
+						$Banner = get_field('banner');
+						echo'<div class="banner"
+						style="background-image: url('.esc_url($Banner['url']).');">
+								<div style="
+								font-weight: 700;
+								clear: inherit;
+								text-align: center;
+								padding: 11% 0px;"></div>		
+						</div>
+						<h1 style="text-align:center; clear:both;">'.get_field('title').'</h1>';
+			}
+			if (get_field('images_list')){
+				$images = get_field('images_list');
+				$size = 'large'; // (thumbnail, medium, large, full or custom size)
+				$width = $image['sizes'][ $size . '-width' ];
+				$height = $image['sizes'][ $size . '-height' ];
+				if( $images ): ?>
+					<div class="gallery">
+							<?php foreach( $images as $image ): 
+								$content = '<div class="image-overlay-container zoom-on-hover">';
+									$content .= '<a class="gallery_image" href="'. $image['url'] .'">';
+										$content .= '<img class="attachment-medium" src="'. $image['url'].'" alt="'. $image['alt'] .'" />';
+									$content .= '<div class="image-overlay" style="">
+										<div class="image-overlay-text" style="">
+										<span class="fas fa-expand-alt" style="color: white"></span>
+										</div>
+										</div>
+										</a>';
+								$content .= '</div>';
+								if ( function_exists('slb_activate') ){
+						$content = slb_activate($content);
+						}
+						
+					echo $content;?>
+							<?php endforeach; ?>
+					</div>
+					<?php endif;
+			}
+			if (have_rows('pdf_collection')){
+				// loop through the rows of data
+				echo '<div class="gallery">';
+				while ( have_rows('pdf_collection') ) : the_row();
+					// display a sub field value
+					$file = get_sub_field('pdf_file');
+					$pdf_image = get_sub_field('pdf_image');
+					$content = get_sub_field('pdf_title');
+					if( $file ){
+					echo'
+							<div style="text-align:center;">
+							<a href="'.$file['url'].'">
+									<img src="'.$pdf_image['url'].'" />
+									'.$content.'
+							</a>
+							</div>
+
+						';
+					}
+				endwhile;
+				echo '</div>';
+			// no rows found
+	   }
+		 ?>
+		<?php
+
+			
+
+		?>
+
 		<?php astra_entry_content_after(); 
 				
 		?>
