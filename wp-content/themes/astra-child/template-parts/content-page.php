@@ -57,8 +57,8 @@
 		<?php astra_entry_content_before(); ?>
 
 		<?php the_content(); 
-			if(get_field('first_image')) {
-				$FirstImage = get_field('first_image');
+			if(get_field('home_banner')) {
+				$FirstImage = get_field('home_banner');
 				$SecondImage = get_field('second_image');
 				echo'	<img class="mainImage" src="'.esc_url($FirstImage['url']).'"/>
 						<img class="secondImage" src="'.esc_url($SecondImage['url']).'"/>
@@ -68,6 +68,19 @@
 							.get_field('short_description').'</h4>
 						<p class="slogan">							
 							'.get_field('slogan').'</p>';
+			}
+			if(get_field('banner')) {
+				$Banner = get_field('banner');
+				echo'<div class="banner"
+				style="background-image: url('.esc_url($Banner['url']).');">
+						<div style="
+						font-weight: 700;
+						clear: inherit;
+						text-align: center;
+						padding: 11% 0px;"></div>		
+				</div>
+				<h1 style="text-align:center; clear:both;">'.get_field('title').'</h1>		
+				';
 			}
 			if(get_field('video')){
 				echo'<div style="display:flex; flex-direction: row; float: left; width:56%;">';

@@ -42,7 +42,7 @@ Template: astra
     font-weight:700;
     position: relative;
     clear: inherit;
-    margin: 5% auto;
+    padding: 15px 0;
 }
 
 .shortdesc{
@@ -151,11 +151,40 @@ section .pttitle{
 
   /* **************************************************** */
 
+  .banner{
+    display: none;
+  }
+
+  .gallery{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  @media all and (min-width:730px){
+    .banner{
+      display: block;
+      max-width: 100%;
+      clear: both;
+      opacity: .3;
+      z-index: 500;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .gallery{
+      flex-direction: row;
+    }
+
+  }
+
+
+
   .image-overlay-container{
     position: relative;
-    width: 24%;
+    max-width: 100%;
     float: left;
-    margin: 0 5px;
+    margin: 10px 5px;
 
   }
 
