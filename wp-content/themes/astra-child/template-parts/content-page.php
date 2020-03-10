@@ -159,7 +159,7 @@
 								text-align: center;
 								padding: 11% 0px;"></div>		
 						</div>
-						<h1 style="text-align:center; clear:both;">'.get_field('title').'</h1>';
+						<h1 style="text-align:center; clear:both; padding: 10px 0 20px 0; font-weight:700;">'.get_field('title').'</h1>';
 			}
 			if (get_field('images_list')){
 				$images = get_field('images_list');
@@ -171,7 +171,7 @@
 							<?php foreach( $images as $image ): 
 								$content = '<div class="image-overlay-container zoom-on-hover">';
 									$content .= '<a class="gallery_image" href="'. $image['url'] .'">';
-										$content .= '<img class="attachment-medium" src="'. $image['url'].'" alt="'. $image['alt'] .'" />';
+									$content .= '<img class="attachment-medium" src="'. $image['url'].'" alt="'. $image['alt'] .'" />';
 									$content .= '<div class="image-overlay" style="">
 										<div class="image-overlay-text" style="">
 										<span class="fas fa-expand-alt" style="color: white"></span>
@@ -196,16 +196,21 @@
 					$file = get_sub_field('pdf_file');
 					$pdf_image = get_sub_field('pdf_image');
 					$content = get_sub_field('pdf_title');
+					$size = 'medium';
+					$thumb = $pdf_image['sizes'][ $size ];
 					if( $file ){
 					echo'
-							<div style="text-align:center;">
-							<a href="'.$file['url'].'">
-									<img src="'.$pdf_image['url'].'" />
-									'.$content.'
+							<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
+							<a class="gallery_image" href="'.$file['url'].'">
+									<img style=""src="'.esc_url($thumb).'" />
+									
+									<div class="image-overlay" style="">
+									<div class="image-overlay-text" style="">
+									<span class="fas fa-file-pdf" style="color: white; font-size:3em;"></span>
+									</div>
+									</div>
 							</a>
-							</div>
-
-						';
+							</div><br>'.$content.'';
 					}
 				endwhile;
 				echo '</div>';
