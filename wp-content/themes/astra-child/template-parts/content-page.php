@@ -190,6 +190,51 @@
 			}
 			if (have_rows('pdf_collection')){
 				// loop through the rows of data
+				
+				$repeater = get_field('pdf_collection');
+				$order = array();
+				
+				echo '	<form name="form1" method="post" action="'.$PHP_SELF.'">
+						<label for="categorySelection"> Category</label>
+						<select name="categorySelection">
+							<option value="">--- Select ---</option>
+							<option value="Inclinometers">Inclinometers</option>
+							<option value="Accelerometers">Accelerometers</option>
+							<option value="Load Cells">Load Cells</option>
+							<option value="Catalogues/Brochures">Catalogues/Brochures</option>
+						</select>
+						<input type="submit" name="submit" value="Select"><br>
+						</form>
+						';
+				if(isset($_POST['submit'])) 
+					{ 
+						$category = $_POST['categorySelection'];
+						echo $category;
+					}
+				foreach( $repeater as $i => $row ) {
+
+					echo '<ul>';
+					if($row['category'] == $category ){
+						$order[ $i ] = $row['id'];
+						echo '<li>'.$row['id'].'/'.$row['pdf_title'].'/'.$label.'</li>';
+					}
+					
+					echo '</ul>';
+				}
+				/*
+				array_multisort( $order, SORT_DESC, $repeater );
+
+				if( $repeater ){
+
+					echo '<ul>';
+				
+					foreach( $repeater as $i => $row ){
+						echo '<li>'.$row['id'].'/'.$row['pdf_title'].'</li>';
+					}
+					echo '</ul>';
+				
+				}
+				*/
 				echo '<div class="gallery">';
 				while ( have_rows('pdf_collection') ) : the_row();
 					// display a sub field value
@@ -210,7 +255,7 @@
 									</div>
 									</div>
 							</a>
-							</div><br>'.$content.'';
+							</div><br>'.$content.'<a  href="'.$file['url'].'" download> download</a>';
 					}
 				endwhile;
 				echo '</div>';
