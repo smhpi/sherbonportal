@@ -198,13 +198,13 @@
 						<form name="form1" method="post" action="'.$PHP_SELF.'">
 						<label for="categorySelection"> </label>
 						<select name="categorySelection">
-							<option value="">--- Select Category ---</option>
+							<option value="">--- All ---</option>
 							<option value="Inclinometers">Inclinometers</option>
 							<option value="Accelerometers">Accelerometers</option>
 							<option value="Load Cells">Load Cells</option>
 							<option value="Catalogues/Brochures">Catalogues/Brochures</option>
 						</select>
-						<input type="submit" name="submit" value="Select"><br>
+						<input class="button" type="submit" name="submit" value="Select"><br>
 						</form>
 						</div>
 						';
@@ -222,7 +222,7 @@
 								if( $file ){
 									echo'	<div class="gallery">
 											<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
-											<a class="gallery_image" href="'.$file['url'].'">
+											<a class="gallery_image" href="'.$file['url'].'" target="_blank">
 													<img style=""src="'.esc_url($thumb).'" />
 													
 													<div class="image-overlay" style="">
@@ -231,7 +231,7 @@
 													</div>
 													</div>
 											</a>
-											</div><br>'.$content;
+											</div><div><p style="padding: 10px 0 0 0">'.$content.'</p><p><a  href="'.$file['url'].'" download> <i class="fas fa-download"></i></a></p></div>';
 											
 									}
 							}
@@ -239,7 +239,7 @@
 								if( $file ){
 									echo'	<div class="gallery">
 											<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
-											<a class="gallery_image" href="'.$file['url'].'">
+											<a class="gallery_image" href="'.$file['url'].'" target="_blank">
 													<img style=""src="'.esc_url($thumb).'" />
 													
 													<div class="image-overlay" style="">
@@ -248,7 +248,7 @@
 													</div>
 													</div>
 											</a>
-											</div><br>'.$content;
+											</div><div><p style="padding: 10px 0 0 0">'.$content.'</p><p><a  href="'.$file['url'].'" download> <i class="fas fa-download"></i></a></p></div>';
 											
 									}
 							}
@@ -267,7 +267,7 @@
 							if( $file ){
 							echo'
 									<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
-									<a class="gallery_image" href="'.$file['url'].'">
+									<a class="gallery_image" href="'.$file['url'].'" target="_blank">
 											<img style=""src="'.esc_url($thumb).'" />
 											<div class="image-overlay" style="">
 											<div class="image-overlay-text" style="">
@@ -275,7 +275,7 @@
 											</div>
 											</div>
 									</a>
-									</div><br>'.$content.'<br><a  href="'.$file['url'].'" download> download</a>';
+									</div><div><p style="padding: 10px 0 0 0">'.$content.'</p><p><a  href="'.$file['url'].'" download> <i class="fas fa-download"></i></a></p></div>';
 							}
 						endwhile;
 						echo '</div>';
