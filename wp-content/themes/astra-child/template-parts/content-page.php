@@ -194,10 +194,11 @@
 				$repeater = get_field('pdf_collection');
 				$order = array();
 				
-				echo '	<form name="form1" method="post" action="'.$PHP_SELF.'">
-						<label for="categorySelection"> Category</label>
+				echo '	<div class="gallery">
+						<form name="form1" method="post" action="'.$PHP_SELF.'">
+						<label for="categorySelection"> </label>
 						<select name="categorySelection">
-							<option value="">--- Select ---</option>
+							<option value="">--- Select Category ---</option>
 							<option value="Inclinometers">Inclinometers</option>
 							<option value="Accelerometers">Accelerometers</option>
 							<option value="Load Cells">Load Cells</option>
@@ -205,22 +206,81 @@
 						</select>
 						<input type="submit" name="submit" value="Select"><br>
 						</form>
+						</div>
 						';
 				if(isset($_POST['submit'])) 
 					{ 
 						$category = $_POST['categorySelection'];
-						echo $category;
+						foreach( $repeater as $i => $row ) {
+							$file = $row['pdf_file'];
+							$pdf_image = $row['pdf_image'];
+							$content = $row['pdf_title'];
+							$size = 'medium';
+							$thumb = $pdf_image['sizes'][ $size ];
+							$order[ $i ] = $row['id'];
+							if($category == ""){
+								if( $file ){
+									echo'	<div class="gallery">
+											<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
+											<a class="gallery_image" href="'.$file['url'].'">
+													<img style=""src="'.esc_url($thumb).'" />
+													
+													<div class="image-overlay" style="">
+													<div class="image-overlay-text" style="">
+													<span class="fas fa-file-pdf" style="color: white; font-size:3em;"></span>
+													</div>
+													</div>
+											</a>
+											</div><br>'.$content;
+											
+									}
+							}
+							else if($row['category'] == $category ){
+								if( $file ){
+									echo'	<div class="gallery">
+											<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
+											<a class="gallery_image" href="'.$file['url'].'">
+													<img style=""src="'.esc_url($thumb).'" />
+													
+													<div class="image-overlay" style="">
+													<div class="image-overlay-text" style="">
+													<span class="fas fa-file-pdf" style="color: white; font-size:3em;"></span>
+													</div>
+													</div>
+											</a>
+											</div><br>'.$content;
+											
+									}
+							}
+						}
+						echo '</div>';
 					}
-				foreach( $repeater as $i => $row ) {
-
-					echo '<ul>';
-					if($row['category'] == $category ){
-						$order[ $i ] = $row['id'];
-						echo '<li>'.$row['id'].'/'.$row['pdf_title'].'/'.$label.'</li>';
+				else {
+					echo '<div class="gallery">';
+						while ( have_rows('pdf_collection') ) : the_row();
+							// display a sub field value
+							$file = get_sub_field('pdf_file');
+							$pdf_image = get_sub_field('pdf_image');
+							$content = get_sub_field('pdf_title');
+							$size = 'medium';
+							$thumb = $pdf_image['sizes'][ $size ];
+							if( $file ){
+							echo'
+									<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
+									<a class="gallery_image" href="'.$file['url'].'">
+											<img style=""src="'.esc_url($thumb).'" />
+											<div class="image-overlay" style="">
+											<div class="image-overlay-text" style="">
+											<span class="fas fa-file-pdf" style="color: white; font-size:3em;"></span>
+											</div>
+											</div>
+									</a>
+									</div><br>'.$content.'<br><a  href="'.$file['url'].'" download> download</a>';
+							}
+						endwhile;
+						echo '</div>';
 					}
-					
-					echo '</ul>';
-				}
+				
 				/*
 				array_multisort( $order, SORT_DESC, $repeater );
 
@@ -235,30 +295,30 @@
 				
 				}
 				*/
-				echo '<div class="gallery">';
-				while ( have_rows('pdf_collection') ) : the_row();
-					// display a sub field value
-					$file = get_sub_field('pdf_file');
-					$pdf_image = get_sub_field('pdf_image');
-					$content = get_sub_field('pdf_title');
-					$size = 'medium';
-					$thumb = $pdf_image['sizes'][ $size ];
-					if( $file ){
-					echo'
-							<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
-							<a class="gallery_image" href="'.$file['url'].'">
-									<img style=""src="'.esc_url($thumb).'" />
+				// echo '<div class="gallery">';
+				// while ( have_rows('pdf_collection') ) : the_row();
+				// 	// display a sub field value
+				// 	$file = get_sub_field('pdf_file');
+				// 	$pdf_image = get_sub_field('pdf_image');
+				// 	$content = get_sub_field('pdf_title');
+				// 	$size = 'medium';
+				// 	$thumb = $pdf_image['sizes'][ $size ];
+				// 	if( $file ){
+				// 	echo'
+				// 			<div style="text-align:center; padding:10px;" class="image-overlay-container zoom-on-hover">
+				// 			<a class="gallery_image" href="'.$file['url'].'">
+				// 					<img style=""src="'.esc_url($thumb).'" />
 									
-									<div class="image-overlay" style="">
-									<div class="image-overlay-text" style="">
-									<span class="fas fa-file-pdf" style="color: white; font-size:3em;"></span>
-									</div>
-									</div>
-							</a>
-							</div><br>'.$content.'<a  href="'.$file['url'].'" download> download</a>';
-					}
-				endwhile;
-				echo '</div>';
+				// 					<div class="image-overlay" style="">
+				// 					<div class="image-overlay-text" style="">
+				// 					<span class="fas fa-file-pdf" style="color: white; font-size:3em;"></span>
+				// 					</div>
+				// 					</div>
+				// 			</a>
+				// 			</div><br>'.$content.'<br><a  href="'.$file['url'].'" download> download</a>';
+				// 	}
+				// endwhile;
+				// echo '</div>';
 			// no rows found
 	   }
 		 ?>
