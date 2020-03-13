@@ -30,6 +30,7 @@ Template: astra
     float:left; 
     margin-right:1%;
     max-height: 1114px;
+    min-width: 500px;
 }
 
 .secondImage{
@@ -42,7 +43,7 @@ Template: astra
     font-weight:700;
     position: relative;
     clear: inherit;
-    padding: 15px 0;
+    padding-top: 15px;
 }
 
 .shortdesc{
@@ -50,15 +51,21 @@ Template: astra
 }
 
 .slogan{
-    position: relative; 
-    background-color: #00144d; 
-    color: white; 
-    float:right; 
-    width:59%; 
-    height:200px; 
-    text-align:center;
-    padding: 60px 0;
-    margin-top: 1%;
+  position: absolute;
+  background-color: #4a9cff;
+  color: white;
+  float: right;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  padding: 5px 0;
+  margin-top: 100px;
+  opacity: 1;
+}
+
+.slogan h4, .entry-content h4{
+  font-size: 1em;
+  margin: 0px;
 }
 
 section .pttitle{
@@ -71,17 +78,33 @@ section .pttitle{
 
 .list{
     display: flex;
-    flex-direction: row;
-    
-
+    flex-direction: column;
 }
 
 .card{
     width: 100%;
     background-position: center;
     background-size: cover;
-    margin: 0 2px;      
+    margin: 5px;      
 }
+
+@media all and (min-width:740px){
+  .slogan{
+    background-color: #0072ff;
+    height: 150px;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 150px;
+    opacity: .6;
+  }
+  .list{
+    flex-direction: row;
+  }
+  .card{
+    margin: 0 30px;      
+  }
+}
+
 
 .ptlink{
     height: 600px;

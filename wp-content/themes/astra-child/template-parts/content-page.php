@@ -62,12 +62,16 @@
 				$SecondImage = get_field('second_image');
 				echo'	<img class="mainImage" src="'.esc_url($FirstImage['url']).'"/>
 						<img class="secondImage" src="'.esc_url($SecondImage['url']).'"/>
-						<h1>'
-							.get_field('title').'</h1>
+						
 						<h4 class="shortdesc">'
 							.get_field('short_description').'</h4>
-						<p class="slogan">							
-							'.get_field('slogan').'</p>';
+						<div class="slogan">							
+							
+							<h1 style="color:white;">'.get_field('title').'</h1>
+							<h4 style="color:white;margin: 0px;">
+							'.get_field('slogan').'
+							</h4>
+						</div>';
 			}
 			if(get_field('video')){
 				echo'<div style="display:flex; flex-direction: row; float: left; width:56%;">';
